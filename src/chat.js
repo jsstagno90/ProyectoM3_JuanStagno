@@ -7,25 +7,23 @@ export function chatView() {
             <header>
 
                 <h1>221B Baker Street</h1>
-<br>
-                <h2>Bienvenido detective</h2>
+
+                <h2>Bienvenido, detective</h2>
 
             </header>
-    
+
             <section id="messages">
 
+                <div class="message sherlock">
+
+                    <strong>🕵️ Sherlock Holmes</strong>
+
+                    <p id="welcome-message"></p>
+
+                </div>
+
             </section>
-<section id="messages">
 
-    <div class="message sherlock">
-
-        <strong>🕵️ Sherlock Holmes</strong>
-
-        <p id="welcome-message"></p>
-
-    </div>
-
-</section>
             <footer class="input-area">
 
                 <textarea
@@ -55,12 +53,26 @@ export function initChat() {
 
     button.addEventListener("click", () => {
 
-        agregarMensajeUsuario(textarea.value);
+        const texto = textarea.value;
+
+        agregarMensajeUsuario(texto);
 
         textarea.value = "";
 
-    });
+        textarea.focus();
 
+    });
+    textarea.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            button.click();
+
+        }
+
+    });
 }
 
 function escribirBienvenida() {
@@ -97,21 +109,21 @@ Exponga el caso y comenzaremos la investigación.
 
 
 function agregarMensajeUsuario(texto) {
-
-    if(texto.trim() === "") return;
-
+    if (texto.trim() === "") return;
     const messages = document.querySelector("#messages");
 
-    messages.innerHTML += `
+    const nuevoMensaje = document.createElement("div");
 
-        <div class="message user">
+    nuevoMensaje.className = "message user";
 
-            <strong>🙂 Tú</strong>
+    nuevoMensaje.innerHTML = `
 
-            <p>${texto}</p>
+    <strong>🙂 Tú</strong>
 
-        </div>
+    <p>${texto}</p>
 
-    `;
+`;
+
+    messages.appendChild(nuevoMensaje);
 
 }

@@ -3,7 +3,10 @@ import {
     homeView,
     initHome
 } from "./home.js";
-import { chatView } from "./chat.js";
+import {
+    chatView,
+    initChat
+} from "./chat.js";
 
 
 function renderRoute() {
@@ -23,6 +26,7 @@ function renderRoute() {
     if (path === "/chat") {
 
         app.innerHTML = chatView();
+        initChat();
 
     }
 }
@@ -36,7 +40,7 @@ function navigate(path) {
 }
 
 
-function init   () {
+function init() {
 
     renderRoute();
 
