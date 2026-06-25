@@ -23,3 +23,16 @@ export function homeView() {
         </main>
     `;
 }
+
+
+export function initHome(navigate) {
+
+    const button = document.querySelector("#start-chat");
+
+    button.addEventListener("click", () => {
+
+        navigate("/chat");
+
+    });
+
+}

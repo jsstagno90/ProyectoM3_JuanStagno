@@ -2,49 +2,49 @@
         RESET
 =========================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* ===========================
         BODY
 =========================== */
 
-body{
+body {
 
-    min-height:100vh;
+    min-height: 100vh;
 
-    font-family:Georgia, "Times New Roman", serif;
+    font-family: Georgia, "Times New Roman", serif;
 
-    background-image:url("./assets/images/london-bg.png");
+    background-image: url("./assets/images/london-bg.png");
 
-    background-size:cover;
+    background-size: cover;
 
-    background-position:center;
+    background-position: center;
 
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
 
-    color:#f2e7c9;
+    color: #f2e7c9;
 
-    overflow-x:hidden;
+    overflow-x: hidden;
 
 }
 
 /* Oscurece un poco la imagen */
 
-body::before{
+body::before {
 
-    content:"";
+    content: "";
 
-    position:fixed;
+    position: fixed;
 
-    inset:0;
+    inset: 0;
 
-    background:rgba(0,0,0,.45);
+    background: rgba(0, 0, 0, .45);
 
-    z-index:-1;
+    z-index: -1;
 
 }
 
@@ -53,17 +53,17 @@ body::before{
         HOME
 =========================== */
 
-.home{
+.home {
 
-    min-height:100vh;
+    min-height: 100vh;
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    padding:20px;
+    padding: 20px;
 
 }
 
@@ -72,25 +72,25 @@ body::before{
         HERO
 =========================== */
 
-.hero{
+.hero {
 
-    width:100%;
+    width: 100%;
 
-    max-width:650px;
+    max-width: 650px;
 
-    padding:30px;
+    padding: 30px;
 
-    text-align:center;
+    text-align: center;
 
-    background:rgba(0,0,0,.45);
+    background: rgba(0, 0, 0, .45);
 
-    backdrop-filter:blur(6px);
+    backdrop-filter: blur(6px);
 
-    border:1px solid rgba(214,180,106,.35);
+    border: 1px solid rgba(214, 180, 106, .35);
 
-    border-radius:14px;
+    border-radius: 14px;
 
-    box-shadow:0 0 40px rgba(0,0,0,.6);
+    box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 
 }
 
@@ -99,17 +99,17 @@ body::before{
         TITULO
 =========================== */
 
-.hero h1{
+.hero h1 {
 
-    font-size:clamp(2.5rem,9vw,4.5rem);
+    font-size: clamp(2.5rem, 9vw, 4.5rem);
 
-    color:#d9b56b;
+    color: #d9b56b;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:3px;
+    letter-spacing: 3px;
 
-    margin-bottom:15px;
+    margin-bottom: 15px;
 
 }
 
@@ -118,15 +118,15 @@ body::before{
         SUBTITULO
 =========================== */
 
-.hero h2{
+.hero h2 {
 
-    font-size:clamp(1.3rem,4vw,2rem);
+    font-size: clamp(1.3rem, 4vw, 2rem);
 
-    color:#efe0bc;
+    color: #efe0bc;
 
-    font-weight:400;
+    font-weight: 400;
 
-    margin-bottom:35px;
+    margin-bottom: 35px;
 
 }
 
@@ -135,15 +135,15 @@ body::before{
         TEXTO
 =========================== */
 
-.hero p{
+.hero p {
 
-    font-size:clamp(1rem,2vw,1.3rem);
+    font-size: clamp(1rem, 2vw, 1.3rem);
 
-    color:#f3ead5;
+    color: #f3ead5;
 
-    line-height:1.8;
+    line-height: 1.8;
 
-    margin-bottom:40px;
+    margin-bottom: 40px;
 
 }
 
@@ -152,42 +152,42 @@ body::before{
         BOTON
 =========================== */
 
-#start-chat{
+#start-chat {
 
-    width:100%;
+    width: 100%;
 
-    max-width:340px;
+    max-width: 340px;
 
-    padding:18px;
+    padding: 18px;
 
-    background:#4a3421;
+    background: #4a3421;
 
-    border:2px solid #c7a25d;
+    border: 2px solid #c7a25d;
 
-    color:#f5d998;
+    color: #f5d998;
 
-    font-size:1rem;
+    font-size: 1rem;
 
-    letter-spacing:2px;
+    letter-spacing: 2px;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.3s;
+    transition: .3s;
 
 }
 
 
 /* Hover */
 
-#start-chat:hover{
+#start-chat:hover {
 
-    background:#c7a25d;
+    background: #c7a25d;
 
-    color:#111;
+    color: #111;
 
-    transform:translateY(-3px);
+    transform: translateY(-3px);
 
-    box-shadow:0 0 20px rgba(199,162,93,.6);
+    box-shadow: 0 0 20px rgba(199, 162, 93, .6);
 
 }
 
@@ -196,11 +196,11 @@ body::before{
       TABLET
 =========================== */
 
-@media (min-width:768px){
+@media (min-width:768px) {
 
-    .hero{
+    .hero {
 
-        padding:50px;
+        padding: 50px;
 
     }
 
@@ -211,13 +211,213 @@ body::before{
       DESKTOP
 =========================== */
 
-@media (min-width:1200px){
+@media (min-width:1200px) {
 
-    .hero{
+    .hero {
 
-        max-width:750px;
+        max-width: 750px;
 
-        padding:60px;
+        padding: 60px;
+
+    }
+
+}
+
+
+
+
+.chat {
+
+    width: 90%;
+    max-width: 900px;
+
+    height: 85vh;
+
+    margin: 40px auto;
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(15, 12, 10, 0.80);
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(212, 175, 55, 0.4);
+
+    border-radius: 18px;
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, .7);
+
+    overflow: hidden;
+
+}
+
+.chat header {
+
+    text-align: center;
+
+    padding: 30px;
+
+    border-bottom: 1px solid rgba(212, 175, 55, .25);
+
+}
+
+.chat h1 {
+
+    color: #d4af37;
+
+    font-size: 48px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+
+}
+
+.chat p {
+
+    color: #ddd;
+
+    font-size: 18px;
+
+}
+
+
+#messages {
+
+    flex: 1;
+
+    padding: 30px;
+
+    overflow-y: auto;
+
+    color: white;
+
+}
+
+
+.input-area {
+
+    display: flex;
+
+    gap: 15px;
+
+    padding: 25px;
+
+    border-top: 1px solid rgba(212, 175, 55, .25);
+
+}
+
+textarea {
+
+    flex: 1;
+
+    resize: none;
+
+    height: 80px;
+
+    background: #1d1a17;
+
+    color: white;
+
+    border: 1px solid #6b5526;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    font-size: 16px;
+
+    outline: none;
+
+}
+
+
+#send-button {
+
+    width: 170px;
+
+    background: #b88b3a;
+
+    color: #111;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+#send-button:hover {
+
+    background: #d4af37;
+
+    transform: scale(1.05);
+
+}
+
+@media(max-width:768px) {
+
+    .chat {
+
+        width: 95%;
+
+        height: 90vh;
+
+        margin: 20px auto;
+
+    }
+
+    .chat h1 {
+
+        font-size: 34px;
+
+    }
+
+    .input-area {
+
+        flex-direction: column;
+
+    }
+
+    #send-button {
+
+        width: 100%;
+
+        height: 55px;
+
+    }
+
+
+    .input-area {
+
+        flex-direction: column;
+
+    }
+
+    textarea {
+
+        width: 100%;
+
+        min-height: 120px;
+
+        font-size: 16px;
+
+        box-sizing: border-box;
+
+    }
+
+    #send-button {
+
+        width: 100%;
+        height: 55px;
 
     }
 

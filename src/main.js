@@ -1,6 +1,10 @@
 import "./style.css";
-import { homeView } from "./home.js";
+import {
+    homeView,
+    initHome
+} from "./home.js";
 import { chatView } from "./chat.js";
+
 
 function renderRoute() {
 
@@ -12,8 +16,10 @@ function renderRoute() {
     if (path === "/") {
 
         app.innerHTML = homeView();
-
+        initHome(navigate);
     }
+
+
     if (path === "/chat") {
 
         app.innerHTML = chatView();
@@ -21,10 +27,21 @@ function renderRoute() {
     }
 }
 
-function init() {
+function navigate(path) {
+
+    history.pushState({}, "", path);
+
+    renderRoute();
+
+}
+
+
+function init   () {
 
     renderRoute();
 
 }
 
 init();
+
+
