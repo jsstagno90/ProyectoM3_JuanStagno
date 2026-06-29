@@ -39,6 +39,10 @@ function navigate(path) {
 
 }
 
+window.addEventListener("popstate", () => {
+    renderRoute();
+});
+
 
 function init() {
 

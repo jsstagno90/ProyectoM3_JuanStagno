@@ -55,7 +55,16 @@ export function initChat() {
 
         const texto = textarea.value;
 
-        agregarMensajeUsuario(texto);
+        agregarMensaje("user", texto);
+
+        setTimeout(() => {
+
+            agregarMensajeConEfecto(
+                "sherlock",
+                "Interesante... continúe con los detalles del caso."
+            );
+
+        }, 1000);
 
         textarea.value = "";
 
@@ -73,6 +82,52 @@ export function initChat() {
         }
 
     });
+}
+function agregarMensajeConEfecto(tipo, texto) {
+
+    const messages = document.querySelector("#messages");
+
+    const nuevoMensaje = document.createElement("div");
+
+    nuevoMensaje.className = `message ${tipo}`;
+
+    const nombre =
+        tipo === "user"
+            ? "🙂 Tú"
+            : "🕵️ Sherlock Holmes";
+
+    nuevoMensaje.innerHTML = `
+
+        <strong>${nombre}</strong>
+
+        <p></p>
+
+    `;
+
+    messages.appendChild(nuevoMensaje);
+
+    const parrafo = nuevoMensaje.querySelector("p");
+
+    let i = 0;
+
+function escribir() {
+
+    if (i < texto.length) {
+
+        parrafo.textContent += texto.charAt(i);
+
+        i++;
+
+        messages.scrollTop = messages.scrollHeight;
+
+        setTimeout(escribir, 25);
+
+    }
+
+}
+
+escribir();
+
 }
 
 function escribirBienvenida() {
@@ -108,22 +163,31 @@ Exponga el caso y comenzaremos la investigación.
 }
 
 
-function agregarMensajeUsuario(texto) {
+function agregarMensaje(tipo, texto) {
+
     if (texto.trim() === "") return;
+
     const messages = document.querySelector("#messages");
 
     const nuevoMensaje = document.createElement("div");
 
-    nuevoMensaje.className = "message user";
+    nuevoMensaje.className = `message ${tipo}`;
+
+    const nombre =
+        tipo === "user"
+            ? "🙂 Tú"
+            : "🕵️ Sherlock Holmes";
 
     nuevoMensaje.innerHTML = `
 
-    <strong>🙂 Tú</strong>
+        <strong>${nombre}</strong>
 
-    <p>${texto}</p>
+        <p>${texto}</p>
 
-`;
+    `;
 
     messages.appendChild(nuevoMensaje);
+
+    messages.scrollTop = messages.scrollHeight;
 
 }

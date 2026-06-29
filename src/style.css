@@ -422,3 +422,10 @@ textarea {
     }
 
 }
+
+
+.message {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(201, 160, 74, 0.2);
+    margin-bottom: 10px;
+}
