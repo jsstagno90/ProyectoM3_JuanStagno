@@ -35,19 +35,21 @@ export async function preguntarASherlock() {
         );
         const data = await response.json();
 
-console.log(data);
+        console.log(data);
 
-if (!response.ok) {
-    throw new Error(data.error?.message || "Error en la API");
-}
+        if (!response.ok || data.error) {
+            throw new Error(
+                data.error?.message || "Error al comunicarse con Sherlock."
+            );
+        }
 
-const respuesta = data.candidates[0].content.parts[0].text;
+        const respuesta = data.candidates[0].content.parts[0].text;
 
         return respuesta;
     } catch (error) {
 
         console.error(error);
-
+        throw error;
     }
 
 }   

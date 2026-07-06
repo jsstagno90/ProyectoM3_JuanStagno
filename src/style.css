@@ -422,7 +422,44 @@ textarea {
     }
 
 }
+.buttons {
+    display: flex;
+    gap: 10px;
+}
 
+#send-button,
+#new-case {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#send-button {
+    background: #c89b3c;
+    color: black;
+}
+
+#send-button:hover {
+    background: #ddb04a;
+}
+
+#new-case {
+    background: #5d4b27;
+    color: #f0d28a;
+}
+
+#new-case:hover {
+    background: #755d30;
+}
+
+.buttons button {
+    flex: 1;
+}
 
 .message {
     padding: 18px 0;

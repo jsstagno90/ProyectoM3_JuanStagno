@@ -1,5 +1,5 @@
 import { preguntarASherlock } from "./api.js";
-import { historialConversacion } from "./conversacion.js";
+import { historialConversacion, guardarHistorial } from "./conversacion.js";
 import { marked } from "marked";
 
 
@@ -31,16 +31,24 @@ export function chatView() {
 
             <footer class="input-area">
 
-                <textarea
-                    id="prompt"
-                    placeholder="Describe el caso..."
-                ></textarea>
+    <textarea
+        id="prompt"
+        placeholder="Describe el caso..."
+    ></textarea>
 
-                <button id="send-button">
-                    Enviar
-                </button>
+    <div class="buttons">
 
-            </footer>
+        <button id="send-button">
+            Enviar
+        </button>
+
+        <button id="new-case">
+            🗂️ Nuevo caso
+        </button>
+
+    </div>
+
+</footer>
 
         </main>
 
@@ -55,11 +63,16 @@ export function initChat() {
     const button = document.querySelector("#send-button");
 
     const textarea = document.querySelector("#prompt");
+    const newCaseButton = document.querySelector("#new-case");
+
+    newCaseButton.addEventListener("click", nuevaInvestigacion);
 
     button.addEventListener("click", async () => {
 
-        const texto = textarea.value;
-
+        const texto = textarea.value.trim();
+        if (!texto) {
+            return;
+        }
         agregarMensaje("user", texto);
         historialConversacion.push({
             role: "user",
@@ -69,22 +82,50 @@ export function initChat() {
                 }
             ]
         });
+        guardarHistorial();
         textarea.value = "";
 
         textarea.focus();
-
+        button.disabled = true;
+        textarea.disabled = true;
+        newCaseButton.disabled = true;
         mostrarAnalizando();
-        const respuesta = await preguntarASherlock();
-        historialConversacion.push({
-            role: "model",
-            parts: [
-                {
-                    text: respuesta
-                }
-            ]
-        });
-        ocultarAnalizando();
-        agregarMensajeConEfecto("sherlock", respuesta);
+
+        try {
+
+            const respuesta = await preguntarASherlock();
+            if (!respuesta) {
+                throw new Error("Respuesta vacía");
+            }
+            historialConversacion.push({
+                role: "model",
+                parts: [
+                    {
+                        text: respuesta
+                    }
+                ]
+            });
+            guardarHistorial();
+            agregarMensajeConEfecto("sherlock", respuesta);
+
+        } catch (error) {
+            console.error(error);
+            agregarMensajeConEfecto(
+                "sherlock",
+                "📡 El telégrafo con Baker Street no responde en este momento.\n\nIntente nuevamente dentro de unos instantes."
+            );
+
+        } finally {
+
+            ocultarAnalizando();
+
+            button.disabled = false;
+            textarea.disabled = false;
+            newCaseButton.disabled = false;
+
+            textarea.focus();
+
+        }
 
 
 
@@ -249,5 +290,32 @@ function ocultarAnalizando() {
         thinking.remove();
 
     }
+
+}
+
+
+function nuevaInvestigacion() {
+
+    historialConversacion.length = 0;
+    localStorage.removeItem("historialSherlock");
+    ocultarAnalizando();
+    const messages = document.querySelector("#messages");
+
+    messages.innerHTML = `
+
+        <div class="message sherlock">
+
+            <strong>🕵️ Sherlock Holmes</strong>
+
+            <p id="welcome-message"></p>
+
+        </div>
+
+    `;
+
+    escribirBienvenida();
+
+    document.querySelector("#prompt").value = "";
+    document.querySelector("#prompt").focus();
 
 }
