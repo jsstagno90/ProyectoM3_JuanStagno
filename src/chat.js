@@ -1,3 +1,8 @@
+import { preguntarASherlock } from "./api.js";
+import { historialConversacion } from "./conversacion.js";
+import { marked } from "marked";
+
+
 export function chatView() {
 
     return `
@@ -51,24 +56,37 @@ export function initChat() {
 
     const textarea = document.querySelector("#prompt");
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
 
         const texto = textarea.value;
 
         agregarMensaje("user", texto);
-
-        setTimeout(() => {
-
-            agregarMensajeConEfecto(
-                "sherlock",
-                "Interesante... continúe con los detalles del caso."
-            );
-
-        }, 1000);
-
+        historialConversacion.push({
+            role: "user",
+            parts: [
+                {
+                    text: texto
+                }
+            ]
+        });
         textarea.value = "";
 
         textarea.focus();
+
+        mostrarAnalizando();
+        const respuesta = await preguntarASherlock();
+        historialConversacion.push({
+            role: "model",
+            parts: [
+                {
+                    text: respuesta
+                }
+            ]
+        });
+        ocultarAnalizando();
+        agregarMensajeConEfecto("sherlock", respuesta);
+
+
 
     });
     textarea.addEventListener("keydown", (event) => {
@@ -110,23 +128,26 @@ function agregarMensajeConEfecto(tipo, texto) {
 
     let i = 0;
 
-function escribir() {
+    function escribir() {
 
-    if (i < texto.length) {
+        if (i < texto.length) {
 
-        parrafo.textContent += texto.charAt(i);
+            parrafo.textContent += texto.charAt(i);
 
-        i++;
+            i++;
 
-        messages.scrollTop = messages.scrollHeight;
+            messages.scrollTop = messages.scrollHeight;
 
-        setTimeout(escribir, 25);
+            setTimeout(escribir, 25);
 
+        } else {
+
+            parrafo.innerHTML = marked.parse(texto);
+
+        }
     }
 
-}
-
-escribir();
+    escribir();
 
 }
 
@@ -189,5 +210,44 @@ function agregarMensaje(tipo, texto) {
     messages.appendChild(nuevoMensaje);
 
     messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+
+function mostrarAnalizando() {
+
+    const messages = document.querySelector("#messages");
+
+    const thinking = document.createElement("div");
+
+    thinking.id = "thinking-message";
+
+    thinking.className = "message sherlock";
+
+    thinking.innerHTML = `
+
+        <strong>🕵️ Sherlock Holmes</strong>
+<br>
+        <p>🔎 Analizando las pistas...</p>
+
+    `;
+
+    messages.appendChild(thinking);
+
+    messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+function ocultarAnalizando() {
+
+    const thinking = document.querySelector("#thinking-message");
+
+    if (thinking) {
+
+        thinking.remove();
+
+    }
 
 }
