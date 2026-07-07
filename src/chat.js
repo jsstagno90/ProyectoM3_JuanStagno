@@ -1,12 +1,12 @@
 import { preguntarASherlock } from "./api.js";
 import { historialConversacion, guardarHistorial } from "./conversacion.js";
 import { marked } from "marked";
-
+import { navbar } from "./navbar.js";
 
 export function chatView() {
 
     return `
-
+ ${navbar()}
         <main class="chat">
 
             <header>

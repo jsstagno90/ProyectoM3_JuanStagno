@@ -1,5 +1,7 @@
+import { navbar } from "./navbar.js";
 export function homeView() {
     return `
+    ${navbar()}
         <main class="home">
 
             <section class="hero">
