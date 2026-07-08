@@ -97,14 +97,15 @@ GEMINI_API_KEY=TU_API_KEY
 ---
 
 ## 📸 Capturas
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f9e60093-1598-4130-bccc-81899f1184ac" width="80%">
+</p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/970fca71-db21-4c84-a9bc-60cbd665beef" width="80%">
 </p>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/f9e60093-1598-4130-bccc-81899f1184ac" width="80%">
-</p>
+
 
 ---
 
