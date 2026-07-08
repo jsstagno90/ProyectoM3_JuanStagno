@@ -4,7 +4,7 @@ Una aplicación web inspirada en **Sherlock Holmes** que permite conversar con e
 
 ## 🚀 Demo
 
-> Agrega aquí el enlace cuando publiques el proyecto en Vercel.
+https://sherlock-chat-tau.vercel.app/
 
 ---
 
